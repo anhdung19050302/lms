@@ -1,13 +1,22 @@
 <template>
-  <HomeView />
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 <script>
-import HomeView from "./views/HomeView.vue";
-
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { PUBLIC_DEFAULT_LAYOUT } from "@/constants";
 export default {
   name: "App",
-  components: {
-    HomeView,
+  setup() {
+    const route = useRoute();
+    console.log(route);
+    return {
+      layout: computed(
+        () => (route.meta.layout || PUBLIC_DEFAULT_LAYOUT) + "-layout"
+      ),
+    };
   },
 };
 </script>
