@@ -21,7 +21,12 @@
     </div>
 
     <div class="btn-auth flex space-x-4">
-      <button class="" @click="showLogin">Đăng nhập</button>
+      <button
+        data-modal-target="authentication-modal-login"
+        data-modal-toggle="authentication-modal-login"
+      >
+        Đăng nhập
+      </button>
       <button
         class="bg-orange-500 w-24 rounded-full h-10 text-white hover:bg-orange-600"
       >
@@ -43,7 +48,6 @@ export default {
     const isToggleLogin = ref(false);
     function showLogin() {
       isToggleLogin.value = !isToggleLogin.value;
-      console.log(isToggleLogin.value);
     }
 
     return {

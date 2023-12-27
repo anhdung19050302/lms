@@ -11,7 +11,6 @@ export default {
   name: "App",
   setup() {
     const route = useRoute();
-    console.log(route);
     return {
       layout: computed(
         () => (route.meta.layout || PUBLIC_DEFAULT_LAYOUT) + "-layout"
