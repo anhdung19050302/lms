@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="container mx-auto flex items-center justify-between border-b py-2.5 px-10"
-  >
+  <nav class="flex items-center justify-between py-2.5 px-8 border-b-2">
     <div class="logo flex items-center">
       <router-link to="/">
         <img
@@ -28,21 +26,26 @@
         Đăng nhập
       </button>
       <button
-        class="bg-orange-500 w-24 rounded-full h-10 text-white hover:bg-orange-600"
+        class="bg-blue-700 w-24 rounded-full h-10 text-white hover:bg-blue-500"
+        data-modal-target="authentication-modal-register"
+        data-modal-toggle="authentication-modal-register"
       >
         Đăng ký
       </button>
     </div>
-  </header>
+  </nav>
   <login-component />
+  <register-component />
 </template>
 
 <script>
 import { ref } from "vue";
 import LoginComponent from "../Auth/LoginComponent.vue";
+import RegisterComponent from "../Auth/RegisterComponent.vue";
 export default {
   components: {
     LoginComponent,
+    RegisterComponent,
   },
   setup() {
     const isToggleLogin = ref(false);
