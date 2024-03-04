@@ -7,6 +7,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { PUBLIC_DEFAULT_LAYOUT } from "@/constants";
+
 export default {
   name: "App",
   setup() {
