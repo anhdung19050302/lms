@@ -4,19 +4,25 @@
     <table class="w-full text-center bg-white rounded-lg">
       <thead class="border-b-2 border-gray-100 h-16">
         <tr class="font-bold">
-          <td>#</td>
-          <td>Program Name</td>
-          <td>Summary</td>
-          <td></td>
-          <td></td>
+          <td class="w-10 px-5">#</td>
+          <td class="px-5">Program Name</td>
+          <td class="px-5">Summary</td>
+          <td class="px-5">Price</td>
+          <td>Upload Image</td>
+          <td>Another Action</td>
         </tr>
       </thead>
       <tbody>
-        <tr class="h-10 border-t-2 border-gray-100">
-          <td>1</td>
-          <td>001</td>
-          <td>Test</td>
-          <td>
+        <tr
+          class="h-10 border-t-2 border-gray-100"
+          v-for="(course, key) in courses"
+          :key="key"
+        >
+          <td class="py-5">{{ key + 1 }}</td>
+          <td class="py-5">{{ course.title }}</td>
+          <td class="py-5">{{ course.summary }}</td>
+          <td class="py-5">{{ course.credit }}</td>
+          <td class="py-5">
             <button class="bg-green-500 px-4 py-3 rounded-2xl text-white">
               Upload
             </button>
@@ -24,62 +30,30 @@
           <td>
             <button
               class="bg-red-500 px-4 py-3 rounded-2xl text-white"
-              @click="showActions = !showActions"
+              @click="showActions = showActions === key ? null : key"
             >
-              <font-awesome-icon :icon="['fas', 'ellipsis-vertical']" />
+              <font-awesome-icon :icon="['fas', 'pen-to-square']" />
             </button>
             <div
-              v-if="showActions"
+              v-if="showActions === key"
               class="absolute bg-white p-2 rounded-md shadow-lg"
             >
-              <button
+              <div
                 class="bg-blue-500 px-4 py-3 rounded-2xl text-white w-full mb-2"
               >
-                Update
-              </button>
-              <button
-                class="bg-red-500 px-4 py-3 rounded-2xl text-white w-full"
-              >
-                Delete
-              </button>
+                <router-link to="/"> Update </router-link>
+              </div>
+              <div class="bg-red-500 px-4 py-3 rounded-2xl text-white w-full">
+                <button class="">Delete</button>
+              </div>
             </div>
-          </td>
-        </tr>
-        <tr class="h-10 border-t-2 border-gray-100">
-          <td>1</td>
-          <td>001</td>
-          <td>Test</td>
-          <td>
-            <button class="bg-green-500 px-4 py-3 rounded-2xl text-white">
-              Upload
-            </button>
-          </td>
-          <td>
-            <button class="bg-red-500 px-4 py-3 rounded-2xl text-white">
-              <font-awesome-icon :icon="['fas', 'ellipsis-vertical']" />
-            </button>
-          </td>
-        </tr>
-        <tr class="h-10 border-t-2 border-gray-100">
-          <td>1</td>
-          <td>001</td>
-          <td>Test</td>
-          <td>
-            <button class="bg-green-500 px-4 py-3 rounded-2xl text-white">
-              Upload
-            </button>
-          </td>
-          <td>
-            <button class="bg-red-500 px-4 py-3 rounded-2xl text-white">
-              <font-awesome-icon :icon="['fas', 'ellipsis-vertical']" />
-            </button>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="my-5">
       <router-link
-        to="/courses/add"
+        to="/admin/course/add"
         class="bg-button text-white p-2 rounded-md px-5 py-3"
         >Add Course</router-link
       >
@@ -87,11 +61,26 @@
   </div>
 </template>
 <script>
+import adminService from "@/services/adminService";
 export default {
   data() {
     return {
       showActions: false,
+      courses: [],
     };
+  },
+  methods: {
+    async getAllCourses() {
+      try {
+        const response = await adminService.getAllCourses();
+        this.courses = response.data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  mounted() {
+    this.getAllCourses();
   },
 };
 </script>

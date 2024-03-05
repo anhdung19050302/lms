@@ -94,9 +94,17 @@ const routes = [
     },
   },
   {
-    path: "/courses",
+    path: "/admin/courses",
     name: "CoursesView  ",
     component: () => import("@/components/User/AllCourses.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/course/add",
+    name: "AddNewCourseByAdmin  ",
+    component: () => import("@/components/Admin/AddCourseAdmin.vue"),
     meta: {
       layout: "admin",
     },
@@ -133,10 +141,20 @@ const routes = [
       layout: "admin",
     },
   },
+
   {
-    path: "/course",
-    name: "Course",
-    component: () => import("@/views/CourseDetail.vue"),
+    path: "/course/:slug",
+    name: "CourseDetail",
+    component: () => import("@/components/CourseDetail/CourseDetail.vue"),
+    meta: {
+      layout: "",
+    },
+  },
+
+  {
+    path: "/learning/:slug",
+    name: "LearningCourse",
+    component: () => import("@/views/LearningCourse.vue"),
     meta: {
       layout: "",
     },

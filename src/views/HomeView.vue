@@ -20,20 +20,14 @@
       </h1>
       <div class="courses">
         <CourseComponent
-          v-for="(course, index) in courses"
+          v-for="(course, index) in courses.slice(0, 6)"
           :key="index"
           :course="course"
           class="course"
         />
       </div>
     </div>
-    <div class="text-center mt-5">
-      <router-link
-        to="/all-course"
-        class="text-white text-xl px-7 py-5 rounded-full bg-button"
-        >Explore all courses</router-link
-      >
-    </div>
+
     <div class="flex flex-col md:flex-row mt-20">
       <div class="w-full md:w-1/3">
         <div>
@@ -49,14 +43,14 @@
           consequat.
         </div>
 
-        <div class="mt-10">
+        <!-- <div class="mt-10">
           <router-link
             to="/about"
             class="text-white px-5 py-3 bg-button rounded-full"
           >
             Learn more
           </router-link>
-        </div>
+        </div> -->
       </div>
       <div class="w-full md:w-1/3 md:ml-20 mt-10 md:mt-0">
         <img src="@/assets/images/body_2.png" alt="" />
@@ -126,8 +120,7 @@
 
 <script>
 import CourseComponent from "@/components/Items/CourseComponent.vue";
-
-import { courses } from "@/utils/data_course.js";
+import adminService from "@/services/adminService";
 export default {
   name: "HomeView",
   components: {
@@ -135,9 +128,22 @@ export default {
   },
   data() {
     return {
-      courses,
+      courses: [],
       userProfiles: {},
     };
+  },
+  methods: {
+    async getCourse() {
+      try {
+        const response = await adminService.getAllCourses();
+        this.courses = response.data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  mounted() {
+    this.getCourse();
   },
 };
 </script>

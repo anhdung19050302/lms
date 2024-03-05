@@ -25,5 +25,13 @@ const adminService = {
     const response = await axos.delete(`/user/${email}/remove`);
     return response;
   },
+  async getAllCourses() {
+    const response = await axos.get("/course");
+    return response;
+  },
+  async CreateNewCourse(data) {
+    const response = await axos.post("/course/admin", data);
+    return response;
+  },
 };
 export default adminService;

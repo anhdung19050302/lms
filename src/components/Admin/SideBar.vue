@@ -76,7 +76,7 @@
         </li>
         <li>
           <router-link
-            to="/courses"
+            to="/admin/courses"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >
             <font-awesome-icon :icon="['fas', 'book-open']" />
@@ -130,13 +130,14 @@
           </router-link>
         </li> -->
         <li>
-          <button
+          <a
+            href="/login"
             @click="logout"
             class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
           >
             <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" />
             <span class="ms-3">Sign Out</span>
-          </button>
+          </a>
         </li>
         <!-- <li>
           <router-link

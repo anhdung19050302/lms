@@ -1,24 +1,22 @@
 <template>
   <div class="course-item" style="color: white">
-    <img :src="course.course_img" alt="" class="img-course rounded-t-3xl" />
+    <img
+      :src="course.thumbnail ? course.thumbnail : courseDefault"
+      alt=""
+      class="img-course rounded-t-3xl"
+    />
     <div class="course-block-1">
       <div class="btn-play">
         <font-awesome-icon
           icon="fa-solid fa-play"
           class="bg-button p-2 rounded-full"
         />
-        <span class="number-lesson"> {{ course.count_lesson }}x lessons </span>
+        <span class="number-lesson"> 10x lessons </span>
       </div>
-      <button
-        class="course-type rounded-full bg-infor px-6 py-3 text-white ml-auto"
-        @click="console"
-      >
-        Design
-      </button>
     </div>
 
     <h3 class="mx-4 my-2.5 text-textColor text-xl">
-      {{ course.course_title }}
+      {{ course.title }}
     </h3>
     <div class="flex mx-4 my-2.5">
       <div class="flex">
@@ -29,15 +27,10 @@
         />
         <div class="pl-4">
           <h3 class="name-lecturers text-textColor">
-            {{ course.name_lectures }}
+            {{ userInfor.lastName }}
           </h3>
-          <span class="lecturer-major text-textColor">{{
-            course.lectures_major
-          }}</span>
+          <span class="lecturer-major text-textColor">Lecturer</span>
         </div>
-      </div>
-      <div class="ml-auto align-middle">
-        <span class="text-textColor">{{ course.count_students }}+ Student</span>
       </div>
     </div>
     <div class="mx-4 my-2.5 flex">
@@ -49,13 +42,19 @@
         <font-awesome-icon :icon="['fas', 'star']" class="star" />
       </div>
       <div class="ml-auto">
-        <button class="underline decoration-2">Enroll Now</button>
+        <router-link
+          class="underline decoration-2"
+          :to="`/course/${course.slug}`"
+          >Enroll Now</router-link
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import courseDefault from "@/assets/images/course-default.jpg";
+import userServices from "@/services/userService";
 export default {
   name: "CourseComponent",
   props: {
@@ -64,8 +63,10 @@ export default {
 
   data() {
     return {
-      rating: this.course.rating,
+      rating: 5,
       starts: [],
+      courseDefault,
+      userInfor: {},
     };
   },
   mounted() {
@@ -75,6 +76,7 @@ export default {
     } catch (error) {
       console.error("Error during execution of mounted hook:", error);
     }
+    this.getuserbyEmail();
   },
   created() {},
   methods: {
@@ -83,6 +85,15 @@ export default {
 
       for (let i = 0; i < this.rating; i++) {
         this.stars[i].classList.add("star-active");
+      }
+    },
+    async getuserbyEmail() {
+      try {
+        const email = this.course.email;
+        const response = await userServices.getUserProfile(email);
+        this.userInfor = response.data.data;
+      } catch (error) {
+        console.log(error);
       }
     },
   },

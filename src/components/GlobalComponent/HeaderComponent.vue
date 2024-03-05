@@ -8,7 +8,6 @@
     <div class="navigation flex flex-col sm:flex-row items-center">
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
-      <router-link to="/course">Course</router-link>
       <router-link to="/contact">Contact</router-link>
     </div>
     <div class="auth flex flex-col sm:flex-row items-center">
@@ -20,10 +19,14 @@
         <button
           id="dropdownInformationButton"
           data-dropdown-toggle="dropdownInformation"
-          class="rounded-full px-3 py-3 text-center inline-flex items-center w-24"
+          class="rounded-full px-3 py-3 text-center inline-flex items-center w-20"
           type="button"
         >
-          <img :src="userProfile.picture" alt="" class="rounded-full" />
+          <img
+            :src="userProfile.picture ? userProfile.picture : defaultImage"
+            alt=""
+            class="rounded-full"
+          />
         </button>
 
         <!-- Dropdown menu -->
@@ -62,12 +65,13 @@
             </li>
           </ul>
           <div class="py-2">
-            <button
+            <a
+              href="/login"
               @click="logout"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
             >
               Sign out
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -77,6 +81,7 @@
 
 <script>
 import userService from "@/services/userService";
+import defaultImage from "@/assets/images/default.png";
 export default {
   name: "HeaderComponent",
   data() {
@@ -84,6 +89,7 @@ export default {
       isLogin: false,
       userProfile: {},
       userRole: "",
+      defaultImage,
     };
   },
 
