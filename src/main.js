@@ -10,7 +10,6 @@ import "@/assets/style/tailwind.css";
 import "@/assets/style/global.css";
 import "flowbite";
 import "preline/preline";
-
 import { registerGlobalComponent } from "./utils/import";
 
 let app = createApp(App);
