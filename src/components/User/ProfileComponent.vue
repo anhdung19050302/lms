@@ -12,14 +12,31 @@
         <p class="mb-3">Role: {{ userRoles.role_name }}</p>
       </div>
       <div class="py-4">
-        <router-link to="/"
-          ><font-awesome-icon :icon="['fas', 'user-pen']" />
-          Account-Settings</router-link
-        ><br />
-        <router-link to="/"
-          ><font-awesome-icon :icon="['fas', 'lock']" /> Chagne
-          Password</router-link
+        <button
+          @click="showUpdateAvatar = true"
+          class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         >
+          Update Avatar
+        </button>
+        <div v-if="showUpdateAvatar" class="mt-4">
+          <input
+            type="file"
+            @change="handleAvatarUpload"
+            class="border-2 border-gray-300 p-2 w-full"
+          />
+          <button
+            @click="updateAvatar"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mr-4"
+          >
+            Save
+          </button>
+          <button
+            @click="showUpdateAvatar = false"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
     <div
@@ -62,9 +79,14 @@ export default {
     return {
       userProfile: {},
       userRoles: {},
+      showUpdateAvatar: false,
+      avatarFile: null,
     };
   },
   methods: {
+    handleAvatarUpload(event) {
+      this.avatarFile = event.target.files[0];
+    },
     async getUserProfile() {
       try {
         const userEmail = localStorage.getItem("user");
@@ -74,6 +96,20 @@ export default {
         this.userRoles = response.data.data.roles[0];
       } catch (error) {
         console.log(error);
+      }
+    },
+    async updateAvatar() {
+      try {
+        const formData = new FormData();
+        formData.append("picture", this.avatarFile);
+        const response = await userService.upLoadAvatar(formData);
+        console.log(response);
+        this.showUpdateAvatar = false;
+        this.getUserProfile();
+        this.$toast.success("Avatar updated successfully");
+      } catch (error) {
+        console.log(error);
+        this.$toast.error("Failed to update avatar");
       }
     },
     formatDate(dateString) {

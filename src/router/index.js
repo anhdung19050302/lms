@@ -18,14 +18,8 @@ const routes = [
       layout: "auth",
     },
   },
-  {
-    path: "/register",
-    name: "register",
-    component: () => import("@/views/RegisterView.vue"),
-    meta: {
-      layout: "auth",
-    },
-  },
+
+  ///Admin Routes
   {
     path: "/admin",
     name: "AdminView  ",
@@ -110,6 +104,47 @@ const routes = [
     },
   },
   {
+    path: "/admin/course/update/:courseId",
+    name: "AdminUPdateCourse  ",
+    component: () => import("@/components/Admin/UpdateCourse.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/course/upload/:courseId",
+    name: "AdminUpdateThumbnail",
+    component: () => import("@/components/User/UploadThumbnail.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+
+  {
+    path: "/admin/course/detail/:courseId",
+    name: "DetailCourseByAdmin",
+    component: () => import("@/components/User/DetailCourse.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/course/video/add/:courseId",
+    name: "AddCourseVideoByAdmin",
+    component: () => import("@/components/CourseDetail/AddCourseVideo.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/course/video/upload/:courseId/:videoId",
+    name: "UploadVideoByAdmin",
+    component: () => import("@/components/Admin/UploadVideo.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
     path: "/complete-exam",
     name: "CompleteExam  ",
     component: () => import("@/components/Exams/CompleteExam.vue"),
@@ -142,6 +177,9 @@ const routes = [
     },
   },
 
+  ///End Admin Routes
+
+  //// User Routes
   {
     path: "/course/:slug",
     name: "CourseDetail",
@@ -152,13 +190,50 @@ const routes = [
   },
 
   {
-    path: "/learning/:slug",
+    path: "/learning/:courseId/:videoId",
     name: "LearningCourse",
     component: () => import("@/views/LearningCourse.vue"),
     meta: {
       layout: "",
     },
   },
+  {
+    path: "/user/profile",
+    name: "UserProfile",
+    component: () => import("@/components/User/UserProfile.vue"),
+    meta: {
+      layout: "",
+    },
+  },
+  {
+    path: "/user/courses",
+    name: "UserCourse",
+    component: () => import("@/views/UserCourse.vue"),
+    meta: {
+      layout: "",
+    },
+  },
+
+  {
+    path: "/register-student",
+    name: "StudentRegister",
+    component: () => import("@/components/User/StudentRegister.vue"),
+    meta: {
+      layout: "auth",
+    },
+  },
+  {
+    path: "/register-lecturer",
+    name: "LecturerRegister",
+    component: () => import("@/components/User/LecturerRegister.vue"),
+    meta: {
+      layout: "auth",
+    },
+  },
+
+  //// End User Profile
+
+  /// 404 not found
   {
     path: "/404",
     component: () => import("@/components/GlobalComponent/NotFound.vue"),

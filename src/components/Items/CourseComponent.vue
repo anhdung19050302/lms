@@ -5,20 +5,13 @@
       alt=""
       class="img-course rounded-t-3xl"
     />
-    <div class="course-block-1">
-      <div class="btn-play">
-        <font-awesome-icon
-          icon="fa-solid fa-play"
-          class="bg-button p-2 rounded-full"
-        />
-        <span class="number-lesson"> 10x lessons </span>
-      </div>
-    </div>
 
-    <h3 class="mx-4 my-2.5 text-textColor text-xl">
+    <h3
+      class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-white-900 md:text-3xl lg:text-2xl dark:text-white ml-5"
+    >
       {{ course.title }}
     </h3>
-    <div class="flex mx-4 my-2.5">
+    <div class="flex mx-4">
       <div class="flex">
         <img
           src="@/assets/images/avatar-lecturer.png"
@@ -33,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="mx-4 my-2.5 flex">
+    <div class="mx-4 flex">
       <div class="stars">
         <font-awesome-icon :icon="['fas', 'star']" class="star" />
         <font-awesome-icon :icon="['fas', 'star']" class="star" />
@@ -42,10 +35,8 @@
         <font-awesome-icon :icon="['fas', 'star']" class="star" />
       </div>
       <div class="ml-auto">
-        <router-link
-          class="underline decoration-2"
-          :to="`/course/${course.slug}`"
-          >Enroll Now</router-link
+        <a class="underline decoration-2" :href="`/course/${course.slug}`"
+          >Enroll Now</a
         >
       </div>
     </div>
@@ -102,7 +93,7 @@ export default {
 <style lang="css" scoped>
 .course-item {
   width: 400px;
-  height: 500px;
+  height: 400px;
   background-color: #381d74 !important;
   border: 3px solid #604a90;
   border-radius: 24px;

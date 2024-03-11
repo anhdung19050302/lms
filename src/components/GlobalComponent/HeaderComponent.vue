@@ -44,7 +44,7 @@
           >
             <li v-if="userRole !== 'ADMIN'">
               <router-link
-                to="/profile"
+                to="/user/profile"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Profile</router-link
               >
@@ -58,7 +58,7 @@
             </li>
             <li v-if="userRole !== 'ADMIN'">
               <router-link
-                to="/course"
+                to="/user/courses"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >Course</router-link
               >
@@ -126,6 +126,9 @@ export default {
 
   created() {
     this.checkLogin();
+    if (this.isLogin) {
+      this.$store.dispatch("decodeToken", localStorage.getItem("token"));
+    }
   },
 };
 </script>

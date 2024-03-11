@@ -33,5 +33,41 @@ const adminService = {
     const response = await axos.post("/course/admin", data);
     return response;
   },
+  async UploadThumbnail(courseId, data) {
+    const response = await axos.patch(
+      `/course/${courseId}/update-thumbnail/admin`,
+      data
+    );
+    return response;
+  },
+  async getCourseById(courseId) {
+    const response = await axos.get(`/course/${courseId}`);
+    return response;
+  },
+  async updateCourse(courseId, data) {
+    const response = await axos.patch(`/course/${courseId}`, data);
+    return response;
+  },
+  async courseVideoByCourseId(data) {
+    const response = await axos.post("/course-video", data);
+    return response;
+  },
+  async getListCourseVideo(courseId) {
+    const response = await axos.get(
+      `/course-video/get-videos-by-course-id?courseId=${courseId}`
+    );
+    return response;
+  },
+  async UpLoadCourseVideo(videoId, data) {
+    const response = await axos.patch(
+      `/course-video/upload-video-file?videoId=${videoId}`,
+      data
+    );
+    return response;
+  },
+  async createCoureVideo(data) {
+    const response = await axos.post("/course-video", data);
+    return response;
+  },
 };
 export default adminService;

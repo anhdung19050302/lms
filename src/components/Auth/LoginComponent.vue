@@ -38,7 +38,7 @@
 
             <div>
               <span>Don't have an account? </span>
-              <router-link to="/register" class="text-button"
+              <router-link to="/register-student" class="text-button"
                 >Sign up</router-link
               >
             </div>
@@ -82,6 +82,7 @@ export default {
         const responseUser = await userService.getUserProfile(user);
         const userRole = responseUser.data.data.roles;
         localStorage.setItem("userRole", userRole[0].role_name);
+
         if (userRole[0].role_name === "ADMIN") {
           this.$router.push("/admin");
         } else {

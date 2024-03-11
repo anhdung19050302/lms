@@ -5,10 +5,12 @@
       <thead class="border-b-2 border-gray-100 h-16">
         <tr class="font-bold">
           <td class="w-10 px-5">#</td>
-          <td class="px-5">Program Name</td>
-          <td class="px-5">Summary</td>
+          <td class="px-5 w-20">Program Name</td>
+          <td class="px-5 w-2/5">Summary</td>
           <td class="px-5">Price</td>
           <td>Upload Image</td>
+          <td>Detail Course Video</td>
+          <td>Detail Course Docx</td>
           <td>Another Action</td>
         </tr>
       </thead>
@@ -23,9 +25,26 @@
           <td class="py-5">{{ course.summary }}</td>
           <td class="py-5">{{ course.credit }}</td>
           <td class="py-5">
-            <button class="bg-green-500 px-4 py-3 rounded-2xl text-white">
+            <router-link
+              :to="`/admin/course/upload/${course.id}`"
+              class="bg-green-500 px-4 py-3 rounded-2xl text-white"
+            >
               Upload
-            </button>
+            </router-link>
+          </td>
+          <td>
+            <router-link
+              :to="`/admin/course/detail/${course.id}`"
+              class="bg-blue-500 px-4 py-3 rounded-2xl text-white"
+              >Detail</router-link
+            >
+          </td>
+          <td>
+            <router-link
+              :to="`/admin/course/docx/${course.id}`"
+              class="bg-blue-500 px-4 py-3 rounded-2xl text-white"
+              >Document</router-link
+            >
           </td>
           <td>
             <button
@@ -41,7 +60,9 @@
               <div
                 class="bg-blue-500 px-4 py-3 rounded-2xl text-white w-full mb-2"
               >
-                <router-link to="/"> Update </router-link>
+                <router-link :to="`/admin/course/update/${course.id}`">
+                  Update
+                </router-link>
               </div>
               <div class="bg-red-500 px-4 py-3 rounded-2xl text-white w-full">
                 <button class="">Delete</button>
@@ -74,6 +95,7 @@ export default {
       try {
         const response = await adminService.getAllCourses();
         this.courses = response.data.data;
+        console.log(this.courses);
       } catch (error) {
         console.log(error);
       }
