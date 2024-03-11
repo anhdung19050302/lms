@@ -144,6 +144,7 @@ const routes = [
       layout: "admin",
     },
   },
+
   {
     path: "/complete-exam",
     name: "CompleteExam  ",
@@ -160,18 +161,28 @@ const routes = [
       layout: "admin",
     },
   },
+
+  //Admin Course Document
   {
-    path: "/reset-password",
-    name: "ResetPassword  ",
-    component: () => import("@/components/User/ResetPassword.vue"),
+    path: "/admin/course/docx/:courseId",
+    name: "CourseDcoument",
+    component: () => import("@/components/CourseDoc/CourseDoc.vue"),
     meta: {
       layout: "admin",
     },
   },
   {
-    path: "/account-settings",
-    name: "AccountSettings",
-    component: () => import("@/components/User/AccountSettings.vue"),
+    path: "/admin/course/docx/add/:courseId",
+    name: "CourseDocumentAdd",
+    component: () => import("@/components/CourseDoc/CourseDocAdd.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/course/docx/upload/:courseId/:courseDocId",
+    name: "CourseDocumentUpLoad",
+    component: () => import("@/components/CourseDoc/CourseDocUpload.vue"),
     meta: {
       layout: "admin",
     },

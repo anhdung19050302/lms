@@ -29,6 +29,29 @@ const courseService = {
     );
     return response;
   },
+  async getCourseDoc(courseId) {
+    const response = await axios.get(
+      `/course-docs/get-docs-by-course-id?courseId=${courseId}`
+    );
+    return response;
+  },
+  async uploadCourseDoc(courseDocId, data) {
+    const response = await axios.patch(
+      `/course-docs/update-document-file?courseDocsId=${courseDocId}`,
+      data
+    );
+    return response;
+  },
+  async createCourseDoc(data) {
+    const response = await axios.post(`/course-docs`, data);
+    return response;
+  },
+  async deleteCourseDoc(courseId, courseDocId) {
+    const response = await axios.delete(
+      `/course-docs/delete-docs-by-course-id?courseId=${courseId}&courseDocsId=${courseDocId}`
+    );
+    return response;
+  },
 };
 
 export default courseService;
