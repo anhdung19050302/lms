@@ -146,6 +146,30 @@ const routes = [
   },
 
   {
+    path: "/admin/course/docs/add/:courseId",
+    name: "AddCourseDocsByAdmin",
+    component: () => import("@/components/CourseDetail/AddCourseDocs.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/course/docs/upload/:courseId/:courseDocsId",
+    name: "UploadDocsByAdmin",
+    component: () => import("@/components/Admin/UploadDocs.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/course/quiz/add/:courseId",
+    name: "AddQuizByAdmin",
+    component: () => import("@/components/CourseDetail/AddCourseQuiz.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
     path: "/complete-exam",
     name: "CompleteExam  ",
     component: () => import("@/components/Exams/CompleteExam.vue"),
