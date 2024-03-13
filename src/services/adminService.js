@@ -69,6 +69,12 @@ const adminService = {
     const response = await axos.post("/course-video", data);
     return response;
   },
+  async removeCourseVideo(courseVideoId, courseId) {
+    const response = await axos.delete(
+      `/course-video/delete-video-by-course-id?courseId=${courseId}&videoId=${courseVideoId}`
+    );
+    return response;
+  },
 
   async getListCourseDocs(courseId) {
     const response = await axos.get(
@@ -87,10 +93,36 @@ const adminService = {
     );
     return response;
   },
+  async removeCourseDocs(courseDocsId, courseId) {
+    const response = await axos.delete(
+      `/course-docs/delete-docs-by-course-id?courseId=${courseId}&courseDocsId=${courseDocsId}`
+    );
+    return response;
+  },
   async getListQuiz(courseId) {
     const response = await axos.get(
       `/quiz/get-quizs-by-course-id?courseId=${courseId}`
     );
+    return response;
+  },
+  async getListQuizQuestionByAdmin(quizId) {
+    const response = await axos.get(`/quiz-question/admin/${quizId}/all`);
+    return response;
+  },
+  async createNewQuizQuestion(quizId, data) {
+    const response = await axos.post(`/quiz-question/${quizId}`, data);
+    return response;
+  },
+  async removeQuizQuestion(id) {
+    const response = await axos.delete(`/quiz-question/${id}`);
+    return response;
+  },
+  async createNewQuizQuestionChoice(id, data) {
+    const response = await axos.post(`/quiz-choice/${id}`, data);
+    return response;
+  },
+  async removeQuizQuestionChoice(id) {
+    const response = await axos.delete(`/quiz-choice/${id}`);
     return response;
   },
   async createNewQuiz(data) {

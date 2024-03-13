@@ -60,6 +60,7 @@
               >
               <p
                 class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3 cursor-pointer"
+                @click="removeCourseVideo(courseVideo.id, courseId)"
               >
                 Remove
               </p>
@@ -120,6 +121,7 @@
               >
               <p
                 class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3 cursor-pointer"
+                @click="removeCourseDocs(courseDocs.id, courseId)"
               >
                 Remove
               </p>
@@ -177,9 +179,9 @@
             <td class="px-6 py-4">{{ courseQuiz.deadline }}</td>
             <td class="flex items-center px-6 py-4">
               <router-link
-                :to="`/admin/course/video/upload/${courseId}/${courseQuiz.id}`"
+                :to="`/admin/quiz-question/${courseId}/${courseQuiz.id}`"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >Upload</router-link
+                >Detail</router-link
               >
               <p
                 class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3 cursor-pointer"
@@ -234,6 +236,22 @@ export default {
       try {
         const response = await adminService.getListQuiz(this.courseId);
         this.listQuizs = response.data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async removeCourseVideo(id, courseId) {
+      try {
+        await adminService.removeCourseVideo(Number(id), Number(courseId));
+        this.GetListCourseVideo();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async removeCourseDocs(id, courseId) {
+      try {
+        await adminService.removeCourseDocs(Number(id), Number(courseId));
+        this.GetListCourseDocs();
       } catch (error) {
         console.log(error);
       }

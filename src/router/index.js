@@ -131,7 +131,7 @@ const routes = [
   {
     path: "/admin/course/video/add/:courseId",
     name: "AddCourseVideoByAdmin",
-    component: () => import("@/components/CourseDetail/AddCourseVideo.vue"),
+    component: () => import("@/components/Admin/AddCourseVideo.vue"),
     meta: {
       layout: "admin",
     },
@@ -148,7 +148,7 @@ const routes = [
   {
     path: "/admin/course/docs/add/:courseId",
     name: "AddCourseDocsByAdmin",
-    component: () => import("@/components/CourseDetail/AddCourseDocs.vue"),
+    component: () => import("@/components/Admin/AddCourseDocs.vue"),
     meta: {
       layout: "admin",
     },
@@ -164,7 +164,7 @@ const routes = [
   {
     path: "/admin/course/quiz/add/:courseId",
     name: "AddQuizByAdmin",
-    component: () => import("@/components/CourseDetail/AddCourseQuiz.vue"),
+    component: () => import("@/components/Admin/AddCourseQuiz.vue"),
     meta: {
       layout: "admin",
     },
@@ -185,32 +185,39 @@ const routes = [
       layout: "admin",
     },
   },
-
+  {
+    path: "/admin/quiz-question/:courseId/:quizId",
+    name: "Quiz  ",
+    component: () => import("@/components/Admin/QuizQuestion.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
   //Admin Course Document
-  {
-    path: "/admin/course/docx/:courseId",
-    name: "CourseDcoument",
-    component: () => import("@/components/CourseDoc/CourseDoc.vue"),
-    meta: {
-      layout: "admin",
-    },
-  },
-  {
-    path: "/admin/course/docx/add/:courseId",
-    name: "CourseDocumentAdd",
-    component: () => import("@/components/CourseDoc/CourseDocAdd.vue"),
-    meta: {
-      layout: "admin",
-    },
-  },
-  {
-    path: "/admin/course/docx/upload/:courseId/:courseDocId",
-    name: "CourseDocumentUpLoad",
-    component: () => import("@/components/CourseDoc/CourseDocUpload.vue"),
-    meta: {
-      layout: "admin",
-    },
-  },
+  // {
+  //   path: "/admin/course/docx/:courseId",
+  //   name: "CourseDcoument",
+  //   component: () => import("@/components/CourseDoc/CourseDoc.vue"),
+  //   meta: {
+  //     layout: "admin",
+  //   },
+  // },
+  // {
+  //   path: "/admin/course/docx/add/:courseId",
+  //   name: "CourseDocumentAdd",
+  //   component: () => import("@/components/CourseDoc/CourseDocAdd.vue"),
+  //   meta: {
+  //     layout: "admin",
+  //   },
+  // },
+  // {
+  //   path: "/admin/course/docx/upload/:courseId/:courseDocId",
+  //   name: "CourseDocumentUpLoad",
+  //   component: () => import("@/components/CourseDoc/CourseDocUpload.vue"),
+  //   meta: {
+  //     layout: "admin",
+  //   },
+  // },
 
   ///End Admin Routes
 
