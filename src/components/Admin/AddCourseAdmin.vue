@@ -74,6 +74,7 @@ export default {
       email: "",
       summary: "",
       levelId: "",
+      error: "",
     };
   },
   methods: {

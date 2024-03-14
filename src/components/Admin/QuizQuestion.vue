@@ -103,28 +103,6 @@
                 </div>
               </div>
             </div>
-            <div class="sm:col-span-4">
-              <label
-                for="multipleChoice"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Multiple Choice</label
-              >
-              <div class="mt-2">
-                <div
-                  class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
-                >
-                  <input
-                    v-model="multipleChoice"
-                    name="multipleChoice"
-                    type="number"
-                    id="multipleChoice"
-                    min="0"
-                    placeholder="The number of correct choice"
-                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-            </div>
             <div class="col-span-full">
               <label
                 for="explanation"
@@ -144,6 +122,36 @@
                 Write a few sentences about your quiz.
               </p>
             </div>
+            <div class="space-y-10">
+              <fieldset>
+                <legend class="text-sm font-semibold leading-6 text-gray-900">
+                  Additional data
+                </legend>
+                <div class="space-y-6">
+                  <div class="relative flex gap-x-3">
+                    <div class="flex h-6 items-center">
+                      <input
+                        id="multipleChoice"
+                        name="multipleChoice"
+                        v-model="multipleChoice"
+                        type="checkbox"
+                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      />
+                    </div>
+                    <div class="text-sm leading-6">
+                      <label
+                        for="multipleChoice"
+                        class="font-medium text-gray-900"
+                        >Multiple Choice</label
+                      >
+                      <p class="text-gray-500">
+                        Check if this question is multiple choice
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
           </div>
         </div>
       </div>
@@ -152,6 +160,7 @@
         <button
           type="button"
           class="text-sm font-semibold leading-6 text-gray-900"
+          @click="() => (isQuizQuestionForm = !isQuizQuestionForm)"
         >
           Cancel
         </button>
@@ -307,7 +316,7 @@ export default {
       courseInfor: {},
       content: "",
       explanation: "",
-      multipleChoice: null,
+      multipleChoice: false,
       isQuizQuestionForm: false,
       questionSelected: null,
       isQuizChoiceForm: false,
@@ -343,6 +352,7 @@ export default {
         });
         this.GetListQuizQuestion();
         this.isQuizQuestionForm = false;
+        this.$toast.success("Create new quiz question success");
       } catch (error) {
         console.log(error);
       }
@@ -352,7 +362,9 @@ export default {
         await adminService.removeQuizQuestion(id);
         this.GetListQuizQuestion();
         this.questionSelected = null;
+        this.$toast.success("Remove quiz question for question success");
       } catch (error) {
+        this.$toast.error(error?.response?.data?.message);
         console.log(error);
       }
     },
@@ -368,12 +380,14 @@ export default {
             correct: this.correct,
           }
         );
-        this.GetListQuizQuestion();
+        this.$toast.success("Create new quiz choice for question success");
         this.questionSelected = null;
         this.choice = "";
         this.correct = false;
         this.isQuizQuestionForm = false;
+        this.GetListQuizQuestion();
       } catch (error) {
+        this.$toast.error(error?.response?.data?.message);
         console.log(error);
       }
     },
@@ -382,7 +396,9 @@ export default {
         await adminService.removeQuizQuestionChoice(id);
         this.GetListQuizQuestion();
         this.questionSelected = null;
+        this.$toast.success("Remove quiz choice for question success");
       } catch (error) {
+        this.$toast.error(error?.response?.data?.message);
         console.log(error);
       }
     },

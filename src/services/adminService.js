@@ -29,6 +29,10 @@ const adminService = {
     const response = await axos.get("/course");
     return response;
   },
+  async getAllCoursesByAdmin() {
+    const response = await axos.get("/course/admin/get-all");
+    return response;
+  },
   async CreateNewCourse(data) {
     const response = await axos.post("/course/admin", data);
     return response;
@@ -46,6 +50,10 @@ const adminService = {
   },
   async updateCourse(courseId, data) {
     const response = await axos.patch(`/course/${courseId}`, data);
+    return response;
+  },
+  async activeCourse(id) {
+    const response = await axos.patch(`/course/active/${id}`);
     return response;
   },
   async courseVideoByCourseId(data) {
@@ -127,6 +135,10 @@ const adminService = {
   },
   async createNewQuiz(data) {
     const response = await axos.post("/quiz/new", data);
+    return response;
+  },
+  async getAllLevels() {
+    const response = await axos.get("level");
     return response;
   },
 };
