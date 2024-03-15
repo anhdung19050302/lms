@@ -11,6 +11,9 @@
         <div class="course-content">
           <show-video-course :listcourseVideo="courseVideo" />
         </div>
+        <div>
+          <show-course-doc :listCourseDoc="listCourseDoc" />
+        </div>
       </div>
     </div>
 
@@ -27,7 +30,7 @@
       <div class="mt-5" v-if="!paidCourse">
         <a
           :href="linktoCheckout"
-          class="bg-orange-500 text-4xl text-white px-8 py-3 rounded-xl"
+          class="bg-orange-500 text-3xl text-white px-8 py-3 rounded-xl"
         >
           Buy Now
         </a>
@@ -37,7 +40,7 @@
           :href="`/learning/${course.id ? course.id : ''}/${
             courseFirstItem.id ? courseFirstItem.id : ''
           }`"
-          class="bg-orange-500 text-4xl text-white px-8 py-3 rounded-xl"
+          class="bg-orange-500 text-3xl text-white px-8 py-3 rounded-xl"
         >
           Start Learning
         </a>
@@ -50,10 +53,12 @@
 import courseService from "@/services/courseService";
 import ShowVideoCourse from "./ShowVideoCourse.vue";
 import courseDefaultImage from "@/assets/images/course-default.jpg";
+import ShowCourseDoc from "./ShowCourseDoc.vue";
 import jwt from "jsonwebtoken";
 export default {
   components: {
     ShowVideoCourse,
+    ShowCourseDoc,
   },
   data() {
     return {
@@ -65,6 +70,7 @@ export default {
       decodedToken: null,
       paidCourse: false,
       courseFirstItem: {},
+      listCourseDoc: [],
     };
   },
   methods: {
@@ -74,6 +80,7 @@ export default {
         const response = await courseService.getCourseBySlug(slug);
         this.course = response.data.data;
         this.getCourseVideo();
+        this.getListCourseDoc();
         this.checkout();
       } catch (error) {
         console.log(error);
@@ -85,7 +92,18 @@ export default {
         const response = await courseService.studentGetCourseVideos(courseId);
         this.courseVideo = response.data.data;
         this.courseFirstItem = this.courseVideo[0];
-        console.log(this.courseFirstItem);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getListCourseDoc() {
+      try {
+        const courseId = this.course.id;
+        const response = await courseService.getListCourseDocByStudent(
+          courseId
+        );
+        this.listCourseDoc = response.data.data;
+        console.log(this.listCourseDoc);
       } catch (error) {
         console.log(error);
       }

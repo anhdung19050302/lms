@@ -1,6 +1,6 @@
 <template>
   <header class="px-5 pt-5 pb-3 text-2xl bg-white font-semibold">
-    Content Course
+    Course Video
   </header>
   <div class="body-course scrollable" v-if="!idCourse">
     <div v-for="(courseVideo, index) in listcourseVideo" :key="index">
@@ -66,7 +66,7 @@ export default {
 </script>
 <style scoped>
 .scrollable {
-  height: 80vh; /* Adjust as needed */
+  height: 20vh; /* Adjust as needed */
   overflow-y: auto;
 }
 .active {

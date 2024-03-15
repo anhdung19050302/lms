@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-white text-2xl">Home > Lectures</h1>
+  <h1 class="text-white text-2xl">Home > Students</h1>
   <div class="my-5">
     <table class="w-full text-center bg-white rounded-lg">
       <thead class="border-b-2 border-gray-100 h-16">

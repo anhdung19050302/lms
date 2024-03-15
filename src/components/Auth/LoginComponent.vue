@@ -68,6 +68,7 @@ export default {
   methods: {
     async handleSubmit() {
       try {
+        console.log("login");
         const response = await authService.login({
           email: this.email,
           password: this.password,

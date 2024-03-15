@@ -52,6 +52,12 @@ const courseService = {
     );
     return response;
   },
+  async getListCourseDocByStudent(courseId) {
+    const response = await axios.get(
+      `/course-docs/get-docs-by-course-id/student?courseId=${courseId}`
+    );
+    return response;
+  },
 };
 
 export default courseService;
