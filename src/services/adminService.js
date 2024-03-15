@@ -113,6 +113,10 @@ const adminService = {
     );
     return response;
   },
+  async publishQuiz(id) {
+    const response = await axos.patch(`/quiz/${id}/publish`);
+    return response;
+  },
   async getListQuizQuestionByAdmin(quizId) {
     const response = await axos.get(`/quiz-question/admin/${quizId}/all`);
     return response;

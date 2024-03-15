@@ -172,7 +172,19 @@
             <td class="px-6 py-4">{{ courseQuiz.questionToPass }}</td>
             <td class="px-6 py-4">{{ courseQuiz.minQuestion }}</td>
             <td class="px-6 py-4">{{ courseQuiz.description }}</td>
-            <td class="px-6 py-4">{{ courseQuiz.active }}</td>
+            <td class="px-6 py-4">
+              <button
+                class="rounded-md w-24 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                :class="
+                  !courseQuiz?.active
+                    ? `bg-indigo-600 hover:bg-indigo-500 `
+                    : `bg-red-600 hover:bg-red-500`
+                "
+                @click="handleActiveBtn(courseQuiz?.id)"
+              >
+                {{ courseQuiz?.active ? `Deactivate` : `Active` }}
+              </button>
+            </td>
             <td class="px-6 py-4">{{ courseQuiz.answersAtEnd }}</td>
             <td class="px-6 py-4">{{ courseQuiz.randomOrder }}</td>
             <td class="px-6 py-4">{{ courseQuiz.singleAttempt }}</td>
@@ -254,6 +266,15 @@ export default {
         this.GetListCourseDocs();
       } catch (error) {
         console.log(error);
+      }
+    },
+    async handleActiveBtn(id) {
+      try {
+        await adminService.publishQuiz(Number(id));
+        this.GetListQuiz();
+      } catch (error) {
+        console.log(error);
+        this.$toast.error(error?.response?.data?.message);
       }
     },
   },
