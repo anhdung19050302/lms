@@ -172,17 +172,25 @@ const routes = [
   {
     path: "/complete-exam",
     name: "CompleteExam  ",
-    component: () => import("@/components/Exams/CompleteExam.vue"),
+    component: () => import("@/components/Exams/ResultQuiz.vue"),
     meta: {
       layout: "admin",
     },
   },
   {
-    path: "/quiz",
-    name: "Quiz  ",
+    path: "/quiz/:courseId",
+    name: "QuizRoute",
     component: () => import("@/components/Exams/QuizComponent.vue"),
     meta: {
-      layout: "admin",
+      layout: "",
+    },
+  },
+  {
+    path: "/quiz/practice/:courseId/:quizId",
+    name: "QuizPractice",
+    component: () => import("@/components/Exams/ExamComponent.vue"),
+    meta: {
+      layout: "",
     },
   },
   {
@@ -235,6 +243,15 @@ const routes = [
     path: "/learning/:courseId/:videoId",
     name: "LearningCourse",
     component: () => import("@/views/LearningCourse.vue"),
+    meta: {
+      layout: "",
+    },
+  },
+
+  {
+    path: "/learning-doc/:courseId/:courseDocsId",
+    name: "LearningDocument",
+    component: () => import("@/components/CourseDoc/CourseDocDownLoad.vue"),
     meta: {
       layout: "",
     },

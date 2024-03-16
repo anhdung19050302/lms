@@ -1,8 +1,11 @@
 <template>
-  <header-component />
-  <slot />
-
-  <footer-component />
+  <div class="flex flex-col min-h-screen">
+    <header-component />
+    <div class="flex-grow">
+      <slot />
+    </div>
+    <footer-component />
+  </div>
 </template>
 
 <script>
@@ -21,3 +24,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.min-h-screen {
+  min-height: 100vh;
+}
+.flex-grow {
+  flex-grow: 1;
+}
+</style>

@@ -58,6 +58,12 @@ const courseService = {
     );
     return response;
   },
+  async getURLCourseDoc(courseId, courseDocId) {
+    const response = await axios.get(
+      `/course-docs/get-docs-url/student?courseId=${courseId}&courseDocsId=${courseDocId}`
+    );
+    return response;
+  },
 };
 
 export default courseService;
