@@ -18,14 +18,14 @@
         <div class="flex-1">
           <h3 class="text-lg font-medium text-gray-800">{{ quiz.title }}</h3>
         </div>
-        <router-link :to="`/quiz/practice/${courseId}/${quiz.id}`">
-          <button
-            type="button"
-            class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Practice
-          </button>
-        </router-link>
+
+        <button
+          @click="handleStartQuiz(courseId, quiz.id)"
+          type="button"
+          class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        >
+          Practice
+        </button>
       </li>
     </ul>
   </div>
@@ -39,6 +39,7 @@ export default {
     return {
       quizes: [],
       courseId: this.$route.params.courseId,
+      sittingQuiz: {},
     };
   },
   methods: {
@@ -46,7 +47,18 @@ export default {
       try {
         const response = await quizService.getQuizByCourseId(this.courseId);
         this.quizes = response.data.data;
-        console.log(this.quizes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async handleStartQuiz(courseId, quizId) {
+      try {
+        const response = await quizService.createQuizSitting(courseId, quizId);
+        this.sittingQuiz = response.data.data;
+        this.$router.push({
+          path: `/quiz/practice/${courseId}/${quizId}`,
+          query: { sitting: this.sittingQuiz.id },
+        });
       } catch (error) {
         console.log(error);
       }

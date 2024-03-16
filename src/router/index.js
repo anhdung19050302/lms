@@ -170,11 +170,11 @@ const routes = [
     },
   },
   {
-    path: "/complete-exam",
+    path: "/quiz/result/:courseId/:quizId",
     name: "CompleteExam  ",
     component: () => import("@/components/Exams/ResultQuiz.vue"),
     meta: {
-      layout: "admin",
+      layout: "",
     },
   },
   {

@@ -17,6 +17,7 @@
                 :name="question.id"
                 v-model="selectedChoice"
                 :value="choice.id"
+                :disabled="isQuestionSubmitted(question)"
               />
               <i class="pl-2">{{ choice.choice }}</i>
             </label>
@@ -76,6 +77,7 @@ export default {
       choices: [],
       submittedQuestions: [],
       selectedChoice: null,
+      sittingId: this.$route.query.sitting,
     };
   },
   methods: {
@@ -94,15 +96,60 @@ export default {
       this.choices = question.choices;
       this.selectedChoice = null;
     },
-    handleSubmitQuiz() {
-      this.submittedQuestions.push(this.question);
-      console.log("Submit");
+    async handleSubmitQuiz() {
+      try {
+        if (!this.selectedChoice) {
+          this.$toast.error("Please select an answer");
+          return;
+        }
+        if (this.isQuestionSubmitted(this.question)) {
+          this.$toast.error("You have already submitted this question");
+          return;
+        }
+        const data = {
+          questionId: this.question.id,
+          choiceId: this.selectedChoice,
+          courseId: this.courseId,
+          quizId: this.quizId,
+          isMultipleChoice: 1,
+        };
+        console.log(data);
+        const response = await quizService.submitQuizz(this.sittingId, data);
+        console.log(response.data.data);
+        this.submittedQuestions.push(this.question);
+        this.$toast.success("Question submitted successfully");
+      } catch (error) {
+        console.log(error);
+      }
     },
     isQuestionSubmitted(question) {
       return this.submittedQuestions.includes(question);
     },
-    handleFinishQuiz() {
-      console.log("Finish");
+    async handleFinishQuiz() {
+      try {
+        if (!this.isAllSubmitted()) {
+          this.$toast.error("Please submit all questions");
+          return;
+        }
+        // eslint-disable-next-line no-unused-vars
+        const response = await quizService.quizzFinish(
+          {
+            courseId: this.courseId,
+            quizId: this.quizId,
+          },
+          this.sittingId
+        );
+        this.$toast.success("Quiz submitted successfully");
+        this.$router.push({
+          path: `/quiz/result/${this.courseId}/${this.quizId}`,
+          query: { sitting: this.sittingId },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    isAllSubmitted() {
+      return this.submittedQuestions.length === this.questions.length;
     },
   },
   created() {

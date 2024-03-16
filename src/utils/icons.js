@@ -27,6 +27,8 @@ import {
   faAngleDown,
   faEllipsisVertical,
   faPenToSquare,
+  faCheck,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -55,7 +57,9 @@ library.add(
   faAngleDown,
   faAngleUp,
   faEllipsisVertical,
-  faPenToSquare
+  faPenToSquare,
+  faCheck,
+  faXmark
 );
 
 export default FontAwesomeIcon;

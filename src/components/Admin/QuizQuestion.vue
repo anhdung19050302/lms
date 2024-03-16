@@ -28,7 +28,6 @@
             <th scope="col" class="px-6 py-3">stt</th>
             <th scope="col" class="px-6 py-3">content</th>
             <th scope="col" class="px-6 py-3">explanation</th>
-            <th scope="col" class="px-6 py-3">multipleChoice</th>
             <th scope="col" class="px-6 py-3">updatedAt</th>
             <th scope="col" class="px-6 py-3">Action</th>
           </tr>
@@ -49,9 +48,6 @@
             <td class="px-6 py-4">{{ quizQuestion.content }}</td>
             <td class="px-6 py-4">
               {{ quizQuestion.explanation }}
-            </td>
-            <td class="px-6 py-4">
-              {{ quizQuestion.multipleChoice }}
             </td>
             <td class="px-6 py-4">
               {{ quizQuestion.updatedAt }}
@@ -121,36 +117,6 @@
               <p class="mt-3 text-sm leading-6 text-gray-600">
                 Write a few sentences about your quiz.
               </p>
-            </div>
-            <div class="space-y-10">
-              <fieldset>
-                <legend class="text-sm font-semibold leading-6 text-gray-900">
-                  Additional data
-                </legend>
-                <div class="space-y-6">
-                  <div class="relative flex gap-x-3">
-                    <div class="flex h-6 items-center">
-                      <input
-                        id="multipleChoice"
-                        name="multipleChoice"
-                        v-model="multipleChoice"
-                        type="checkbox"
-                        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                      />
-                    </div>
-                    <div class="text-sm leading-6">
-                      <label
-                        for="multipleChoice"
-                        class="font-medium text-gray-900"
-                        >Multiple Choice</label
-                      >
-                      <p class="text-gray-500">
-                        Check if this question is multiple choice
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
             </div>
           </div>
         </div>
@@ -316,7 +282,7 @@ export default {
       courseInfor: {},
       content: "",
       explanation: "",
-      multipleChoice: false,
+      multipleChoice: true,
       isQuizQuestionForm: false,
       questionSelected: null,
       isQuizChoiceForm: false,
