@@ -61,6 +61,7 @@ export default {
         });
       } catch (error) {
         console.log(error);
+        this.$toast.error("You have already taken this quiz");
       }
     },
   },

@@ -7,8 +7,8 @@
     </div>
     <div class="navigation flex flex-col sm:flex-row items-center">
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
+      <a :href="pathBlog" target="_blank">Community</a>
+      <!-- <router-link to="/contact">Contact</router-link> -->
     </div>
     <div class="auth flex flex-col sm:flex-row items-center">
       <div v-if="!isLogin">
@@ -90,6 +90,7 @@ export default {
       userProfile: {},
       userRole: "",
       defaultImage,
+      pathBlog: process.env.VUE_APP_BLOG,
     };
   },
 
