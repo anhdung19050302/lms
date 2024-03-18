@@ -45,6 +45,7 @@ const routes = [
     component: () => import("@/components/User/LecturersComponent.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -53,6 +54,7 @@ const routes = [
     component: () => import("@/components/User/CreateLecturer.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -61,6 +63,7 @@ const routes = [
     component: () => import("@/components/User/UpdateLecturer.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -69,6 +72,7 @@ const routes = [
     component: () => import("@/components/User/StudentsComponent.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -77,6 +81,7 @@ const routes = [
     component: () => import("@/components/User/CreateStudent.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -85,6 +90,7 @@ const routes = [
     component: () => import("@/components/User/UpdateStudent.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -93,6 +99,7 @@ const routes = [
     component: () => import("@/components/User/AllCourses.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -101,6 +108,7 @@ const routes = [
     component: () => import("@/components/Admin/AddCourseAdmin.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -109,6 +117,7 @@ const routes = [
     component: () => import("@/components/Admin/UpdateCourse.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -117,6 +126,7 @@ const routes = [
     component: () => import("@/components/User/UploadThumbnail.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
 
@@ -126,6 +136,7 @@ const routes = [
     component: () => import("@/components/User/DetailCourse.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -134,6 +145,7 @@ const routes = [
     component: () => import("@/components/Admin/AddCourseVideo.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -142,6 +154,7 @@ const routes = [
     component: () => import("@/components/Admin/UploadVideo.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
 
@@ -151,6 +164,7 @@ const routes = [
     component: () => import("@/components/Admin/AddCourseDocs.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -159,6 +173,7 @@ const routes = [
     component: () => import("@/components/Admin/UploadDocs.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
@@ -167,6 +182,7 @@ const routes = [
     component: () => import("@/components/Admin/AddCourseQuiz.vue"),
     meta: {
       layout: "admin",
+      requiresAdmin: true,
     },
   },
   {
