@@ -210,6 +210,15 @@ const routes = [
     },
   },
   {
+    path: "/quiz/result-sitting/:courseId/:quizId",
+    name: "QuizSitting",
+    component: () => import("@/components/Exams/QuizSitting.vue"),
+    meta: {
+      layout: "",
+    },
+  },
+
+  {
     path: "/admin/quiz-question/:courseId/:quizId",
     name: "Quiz  ",
     component: () => import("@/components/Admin/QuizQuestion.vue"),
@@ -217,6 +226,7 @@ const routes = [
       layout: "admin",
     },
   },
+
   //Admin Course Document
   // {
   //   path: "/admin/course/docx/:courseId",

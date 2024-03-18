@@ -38,6 +38,10 @@ const quizService = {
     );
     return response;
   },
+  async getQuizSitting(quizId) {
+    const response = await axios.get(`/quiz-sitting/get-all/student/${quizId}`);
+    return response;
+  },
 };
 
 export default quizService;

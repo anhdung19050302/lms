@@ -26,6 +26,9 @@
         >
           Practice
         </button>
+        <router-link :to="`/quiz/result-sitting/${courseId}/${quiz.id}`">
+          Result
+        </router-link>
       </li>
     </ul>
   </div>
