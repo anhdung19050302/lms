@@ -226,7 +226,30 @@ const routes = [
       layout: "admin",
     },
   },
-
+  {
+    path: "/admin/category",
+    name: "Category",
+    component: () => import("@/components/Admin/CategoryList.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/blog",
+    name: "Blog",
+    component: () => import("@/components/Admin/BlogList.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/blog/add",
+    name: "AddBlog",
+    component: () => import("@/components/Admin/AddBlog.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
   //Admin Course Document
   // {
   //   path: "/admin/course/docx/:courseId",
@@ -290,19 +313,19 @@ const routes = [
       layout: "",
     },
   },
-  {
-    path: "/user/courses",
-    name: "UserCourse",
-    component: () => import("@/views/UserCourse.vue"),
-    meta: {
-      layout: "",
-    },
-  },
 
   {
     path: "/register-student",
     name: "StudentRegister",
     component: () => import("@/components/User/StudentRegister.vue"),
+    meta: {
+      layout: "auth",
+    },
+  },
+  {
+    path: "/register-lecturer",
+    name: "LecturerRegister",
+    component: () => import("@/components/User/LecturerRegister.vue"),
     meta: {
       layout: "auth",
     },

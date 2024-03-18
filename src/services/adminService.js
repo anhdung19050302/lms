@@ -145,5 +145,37 @@ const adminService = {
     const response = await axos.get("level");
     return response;
   },
+  async getListCategory() {
+    const response = await axos.get(`/category`);
+    return response;
+  },
+  async createNewCategory(data) {
+    const response = await axos.post(`/category`, data);
+    return response;
+  },
+  async removeCategory(id) {
+    const response = await axos.delete(`/category/${id}`);
+    return response;
+  },
+  async updateCategory(id, data) {
+    const response = await axos.patch(`/category/${id}`, data);
+    return response;
+  },
+  async getListBlog() {
+    const response = await axos.get(`/blog`);
+    return response;
+  },
+  async createNewBlog(data) {
+    const response = await axos.post(`/blog`, { ...data });
+    return response;
+  },
+  async createUpdateBlog(id, data) {
+    const response = await axos.patch(`/blog/${id}`, data);
+    return response;
+  },
+  async removeBlog(id) {
+    const response = await axos.delete(`/blog/${id}`);
+    return response;
+  },
 };
 export default adminService;

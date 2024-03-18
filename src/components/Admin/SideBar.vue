@@ -85,28 +85,26 @@
             >
           </router-link>
         </li>
-        <!-- <li>
+        <li>
           <router-link
-            to="/complete-exam"
+            to="/admin/category"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >
             <font-awesome-icon :icon="['fas', 'list-check']" />
             <span class="flex-1 ms-3 whitespace-nowrap"
-              >Complete Exams</span
+              >Category</span
             ></router-link
           >
         </li>
         <li>
           <router-link
-            to="/quiz"
+            to="/admin/blog"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >
-            <font-awesome-icon :icon="['fas', 'record-vinyl']" />
-            <span class="flex-1 ms-3 whitespace-nowrap"
-              >Quiz Progress Rec</span
-            ></router-link
+            <font-awesome-icon :icon="['fas', 'book-open']" />
+            <span class="flex-1 ms-3 whitespace-nowrap">Blog</span></router-link
           >
-        </li> -->
+        </li>
       </ul>
       <ul
         class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700"
