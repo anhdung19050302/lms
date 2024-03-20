@@ -313,6 +313,14 @@ const routes = [
       layout: "",
     },
   },
+  {
+    path: "/user/courses",
+    name: "UserCourses",
+    component: () => import("@/views/UserCourse.vue"),
+    meta: {
+      layout: "",
+    },
+  },
 
   {
     path: "/register-student",

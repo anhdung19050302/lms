@@ -14,7 +14,7 @@
     <div class="flex mx-4">
       <div class="flex">
         <img
-          src="@/assets/images/avatar-lecturer.png"
+          :src="userInfor.picture ? userInfor.picture : avaterLecturer"
           alt=""
           class="avatar-lecturers"
         />
@@ -46,6 +46,7 @@
 <script>
 import courseDefault from "@/assets/images/course-default.jpg";
 import userServices from "@/services/userService";
+import avaterLecturer from "@/assets/images/avatar-lecturer.png";
 export default {
   name: "CourseComponent",
   props: {
@@ -58,6 +59,7 @@ export default {
       starts: [],
       courseDefault,
       userInfor: {},
+      avaterLecturer,
     };
   },
   mounted() {
@@ -83,6 +85,7 @@ export default {
         const email = this.course.email;
         const response = await userServices.getUserProfile(email);
         this.userInfor = response.data.data;
+        console.log(this.userInfor);
       } catch (error) {
         console.log(error);
       }
