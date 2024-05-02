@@ -1,0 +1,43 @@
+version: '3'
+services:
+  db:
+    container_name: lms-db
+    hostname: lms-db
+    image: mysql:8.1.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456a@
+      MYSQL_DATABASE: lms
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database/lms-db/:/var/lib/mysql/
+  # lms-be:
+  #   image: kjnwjn/lms-be:1.0.0
+  #   container_name: lms-be
+  #   hostname: lms-be
+  #   environment:
+  #     - PORT=3000
+  #     - DATABASE_HOST=localhost
+  #     - DATABASE_PORT=3306
+  #     - DATABASE_USERNAME=root
+  #     - DATABASE_PASSWORD=123456a@
+  #     - DATABASE_DB_NAME=lms-db
+  #   ports:
+  #     - '3000:3000'
+  #   networks:
+  #     - default
+#   wedding-fe:
+#     image: kjnwjn/wedding-fe:1.0.0
+#     container_name: wedding-fe
+#     hostname: wedding-fe
+#     environment:
+#       - VITE_REACT_APP_API_URL=https://mayamoment.com:3000/
+#       - VITE_REACT_APP_API_VERSION=
+#     ports:
+#       - '80:3001'
+#     networks:
+#       - default
+networks:
+  default:
+    driver: bridge
+    name: wedding
