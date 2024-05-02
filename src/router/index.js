@@ -372,7 +372,7 @@ router.beforeEach((to, from, next) => {
   if (!isAuthenticated && requiresAuth) {
     next("/login");
   } else {
-    if (requiresAdmin && userRole !== "ADMIN") {
+    if (requiresAdmin && userRole !== "ADMIN" && userRole !== "LECTURER") {
       next("/404");
     } else {
       next();
